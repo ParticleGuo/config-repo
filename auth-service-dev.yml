@@ -1,0 +1,36 @@
+server:
+  port: 8300
+  servlet:
+    context-path: /auth
+
+# mybatis 配置
+mybatis:
+  type-aliases-package: com.particle.api.pojo
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+# spring 配置
+spring:
+  application:
+    name: cloudservice-auth
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user_db?serverTimezon=UTC&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: Particle1024
+
+
+# Eureka 的配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/,http://localhost:8101/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+
+# 服务信息
+info:
+  app.name: cloudservice-auth
+  company.name: www.particle.com
