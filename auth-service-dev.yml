@@ -1,5 +1,5 @@
 server:
-  port: 8300
+  port: 8302
   servlet:
     context-path: /auth
 
@@ -12,7 +12,9 @@ mybatis:
 # spring 配置
 spring:
   application:
-    name: cloudservice-auth
+    name: auth-service
+  profiles:
+    active: dev
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -25,7 +27,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8100/eureka/,http://localhost:8101/eureka/
+      defaultZone: http://localhost:8100/eureka/
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     prefer-ip-address: true
